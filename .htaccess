@@ -1,0 +1,34 @@
+# Опция неизвестна.
+#Options +FollowSymLinks
+
+# Включаем модуль Rewrite (преобразование строк URL адреса).
+RewriteEngine On
+
+# Указываем корневую директорию.
+RewriteBase /
+
+# файл для 404 ответа сервера (файл не найден)
+ErrorDocument 403	/404.html
+ErrorDocument 404	/404.html
+
+# 301 редирект www.ayza.ru на ayza.ru
+RewriteCond %{HTTP_HOST} ^www.ayza\.ru$ [NC]
+RewriteRule ^(.*)$ http://ayza.ru/$1 [R=301,L]
+
+# 301 редирект www.ayza.ru. на ayza.ru
+RewriteCond %{HTTP_HOST} ^www.ayza\.ru\.$ [NC]
+RewriteRule ^(.*)$ http://ayza.ru/$1 [R=301,L]
+
+# 301 редирект ayza.ru. на ayza.ru
+RewriteCond %{HTTP_HOST} ^ayza\.ru\.$ [NC]
+RewriteRule ^(.*)$ http://ayza.ru/$1 [R=301,L]
+
+# 301 редирект ayza.ru на ayza.ru/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\..{1,10}$
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ http://ayza.ru/$1/ [L,R=301]
+
+# 301 редирект с /index.html на /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ http://ayza.ru/$1 [R=301,L]
