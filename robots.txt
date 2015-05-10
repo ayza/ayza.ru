@@ -1,0 +1,17 @@
+# Директивы для всех роботов.
+User-agent: *
+
+# Карта файлов сайта.
+Sitemap: http://ayza.ru/sitemap.xml
+
+# Задержка обхода робота 120 секунд.
+Crawl-delay: 120
+
+# Запрещённая для индексирования папка.
+Disallow: /blog/
+# Запрет страницы в формате ayza.ru/index.html
+Disallow: /index.html$
+Disallow: /404.html
+
+# Основное зеркало без www.
+Host: ayza.ru
